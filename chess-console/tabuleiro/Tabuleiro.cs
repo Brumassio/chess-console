@@ -18,5 +18,11 @@ namespace tabuleiro
             Columns=columns;
             Pecas = new Peca[Lines, Columns];
         }
+
+        public Peca GetPeca(int line, int column)
+        {
+            return Pecas[line, column];
+        }
     }
+
 }
