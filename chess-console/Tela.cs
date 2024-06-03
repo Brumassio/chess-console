@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tabuleiro;
+﻿using tabuleiro;
 
 namespace chess_console
 {
@@ -17,11 +12,11 @@ namespace chess_console
                 {
                     if(tab.GetPeca(i,j) == null)
                     {
-                        Console.WriteLine("- ");
+                        Console.Write("- ");
                     }
                     else
                     {
-                        Console.WriteLine(tab.GetPeca(i, j)+" ");
+                        Console.Write(tab.GetPeca(i, j)+" ");
                     }
                 }
                 Console.WriteLine();

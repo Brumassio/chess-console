@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace tabuleiro
 {
     internal class Tabuleiro
@@ -22,6 +17,47 @@ namespace tabuleiro
         public Peca GetPeca(int line, int column)
         {
             return Pecas[line, column];
+        }
+
+        public Peca GetPeca(Posicao pos)
+        {
+            return Pecas[pos.Line, pos.Column];
+        }
+
+        public bool ExistePeca(Posicao pos)
+        {
+            ValidarPosicao(pos);
+            return GetPeca(pos) != null;
+        }
+
+        public void ColocarPeca(Peca p, Posicao pos)
+        {
+            if (ExistePeca(pos))
+            {
+                throw new TabuleiroException("There is already a piece in that position !");
+            }
+            Pecas[pos.Line,pos.Column] = p;
+            p.Posicao = pos;
+        }
+
+        public bool PosicaoValida(Posicao pos)
+        {
+            if(pos.Line<0 || pos.Line >= Lines || pos.Column<0 || pos.Column >= Columns)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public void ValidarPosicao(Posicao pos)
+        {
+            if (!PosicaoValida(pos))
+            {
+                throw new TabuleiroException("Position invalid !");
+            }
         }
     }
 
