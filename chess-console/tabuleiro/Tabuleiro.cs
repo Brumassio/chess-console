@@ -40,10 +40,24 @@ namespace tabuleiro
             p.Posicao = pos;
         }
 
+        public Peca RetirarPeca(Posicao pos)
+        {
+            if(GetPeca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = GetPeca(pos);
+            aux.Posicao = null;
+            Pecas[pos.Line, pos.Column] = null;
+            return aux;
+        }
+
         public bool PosicaoValida(Posicao pos)
         {
             if(pos.Line<0 || pos.Line >= Lines || pos.Column<0 || pos.Column >= Columns)
             {
+                Console.WriteLine(pos.Line);
+                Console.WriteLine(pos.Column);
                 return false;
             }
             else

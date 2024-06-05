@@ -8,14 +8,22 @@ namespace chess_console
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
+                PartidaDeXadrez game = new PartidaDeXadrez();
+                while (!game.Terminada)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(game.Tab);
+                    Console.WriteLine();
 
-                tab.ColocarPeca(new Knight(tab, Color.Preta), new Posicao(1, 2));
-                tab.ColocarPeca(new King(tab, Color.Preta), new Posicao(2, 2));
-                tab.ColocarPeca(new Knight(tab, Color.Preta), new Posicao(2, 0));
-                tab.ColocarPeca(new King(tab, Color.Preta), new Posicao(2, 10));
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
-                Tela.ImprimirTabuleiro(tab);
+                    game.executaMovimento(origem, destino);
+
+
+                }
             }
             catch (TabuleiroException e)
             {
