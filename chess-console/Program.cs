@@ -11,24 +11,35 @@ namespace chess_console
                 PartidaDeXadrez game = new PartidaDeXadrez();
                 while (!game.Terminada)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(game.Tab);
-                    Console.WriteLine();
+                    try
+                    {
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(game.Tab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: "+ game.Turno);
+                        Console.WriteLine("Aguardando jogada: "+ game.JogadorAtual);
 
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
-                    bool[,] possicoesPossiveis = game.Tab.GetPeca(origem).MovimentosPossiveis();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        game.ValidarPosicaoDeOrigem(origem);
+                        bool[,] possicoesPossiveis = game.Tab.GetPeca(origem).MovimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(game.Tab, possicoesPossiveis);
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(game.Tab, possicoesPossiveis);
 
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        game.ValidarPosicaoDeDestino(origem, destino);
 
-                    game.executaMovimento(origem, destino);
-
-
+                        game.RealizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e)
+                    {
+                        Console.WriteLine("Error: "+ e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (TabuleiroException e)
@@ -39,7 +50,7 @@ namespace chess_console
             {
                 Console.WriteLine("Error: "+e.Message);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Error: "+e.Message);
             }
