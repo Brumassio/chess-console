@@ -97,7 +97,7 @@ namespace Xadrez
 
         public void ValidarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if (!Tab.GetPeca(origem).PodeMoverPara(destino))
+            if (!Tab.GetPeca(origem).MovimentoPossivel(destino))
             {
                 throw new TabuleiroException("Posição de Destino Inválida");
             }
@@ -220,19 +220,40 @@ namespace Xadrez
         }
         private void ColocarPecas()
         {
-            ColocarNovaPeca('c', 1,new Knight(Tab, Cores.Branca));
-            ColocarNovaPeca('c', 2, new Knight(Tab, Cores.Branca));
-            ColocarNovaPeca('d', 2, new Knight(Tab, Cores.Branca));
-            ColocarNovaPeca('e', 1, new Knight(Tab, Cores.Branca));
-            ColocarNovaPeca('e', 2, new Knight(Tab, Cores.Branca));
-            ColocarNovaPeca('d', 1, new King(Tab, Cores.Branca));
+            ColocarNovaPeca('a', 1,new Rook(Tab, Cores.Branca));
+            ColocarNovaPeca('b', 1, new Knight(Tab, Cores.Branca));
+            ColocarNovaPeca('c', 1, new Bishop(Tab, Cores.Branca));
+            ColocarNovaPeca('d', 1, new Queen(Tab, Cores.Branca));
+            ColocarNovaPeca('e', 1, new King(Tab, Cores.Branca));
+            ColocarNovaPeca('f', 1, new Bishop(Tab, Cores.Branca));
+            ColocarNovaPeca('g', 1, new Knight(Tab, Cores.Branca));
+            ColocarNovaPeca('h', 1, new Rook(Tab, Cores.Branca));
+            ColocarNovaPeca('a', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('b', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('c', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('d', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('e', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('f', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('g', 2, new Pawn(Tab, Cores.Branca));
+            ColocarNovaPeca('h', 2, new Pawn(Tab, Cores.Branca));
 
-            ColocarNovaPeca('c', 8, new Knight(Tab, Cores.Preta));
-            ColocarNovaPeca('c', 7, new Knight(Tab, Cores.Preta));
-            ColocarNovaPeca('d', 7, new Knight(Tab, Cores.Preta));
-            ColocarNovaPeca('e', 7, new Knight(Tab, Cores.Preta));
-            ColocarNovaPeca('e', 8, new Knight(Tab, Cores.Preta));
-            ColocarNovaPeca('d', 8, new King(Tab, Cores.Preta));
+            ColocarNovaPeca('a', 8, new Rook(Tab, Cores.Preta));
+            ColocarNovaPeca('b', 8, new Knight(Tab, Cores.Preta)); 
+            ColocarNovaPeca('c', 8, new Bishop(Tab, Cores.Preta));
+            ColocarNovaPeca('d', 8, new Queen(Tab, Cores.Preta));
+            ColocarNovaPeca('e', 8, new King(Tab, Cores.Preta));
+            ColocarNovaPeca('f', 8, new Bishop(Tab, Cores.Preta));
+            ColocarNovaPeca('g', 8, new Knight(Tab, Cores.Preta));
+            ColocarNovaPeca('h', 8, new Rook(Tab, Cores.Preta));
+            ColocarNovaPeca('a', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('b', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('c', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('d', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('e', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('f', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('g', 7, new Pawn(Tab, Cores.Preta));
+            ColocarNovaPeca('h', 7, new Pawn(Tab, Cores.Preta));
+
 
 
         }
