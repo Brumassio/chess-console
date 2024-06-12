@@ -9,7 +9,7 @@ namespace Xadrez
 {
     internal class Knight : Peca
     {
-        public Knight(Tabuleiro tab, Color cor) : base(tab, cor)
+        public Knight(Tabuleiro tab, Cores cor) : base(tab, cor)
         {
         }
         private bool PodeMover(Posicao pos)

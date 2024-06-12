@@ -5,6 +5,43 @@ namespace chess_console
 {
     internal class Tela
     {
+        public static void ImprimirPartida(PartidaDeXadrez part)
+        {
+            ImprimirTabuleiro(part.Tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(part);
+            Console.WriteLine();
+            Console.WriteLine("Turno: "+ part.Turno);
+            Console.WriteLine("Aguardando jogada: "+ part.JogadorAtual);
+            if (part.Xeque)
+            {
+                Console.WriteLine("Você está em xeque !");
+            }
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez part)
+        {
+            Console.WriteLine("\nPeças capturadas: ");
+            Console.Write("Brancas: ");
+            ImprimirConjunto(part.pecasCapturadas(Cores.Branca));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            ImprimirConjunto(part.pecasCapturadas(Cores.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conj)
+        {
+            Console.Write("[");
+            foreach(Peca x in conj)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
             for(int i=0;i<tab.Lines; i++)
@@ -62,7 +99,7 @@ namespace chess_console
             }
             else
             {
-                if (peca.Cor == Color.Branca)
+                if (peca.Cor == Cores.Branca)
                 {
                     Console.Write(peca);
                 }

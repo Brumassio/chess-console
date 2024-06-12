@@ -1,7 +1,7 @@
 ﻿
 namespace tabuleiro
 {
-    enum Color
+    enum Cores
     {
         Branca,
         Preta,
