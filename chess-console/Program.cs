@@ -38,6 +38,10 @@ namespace chess_console
                         Console.ReadLine();
                     }
                 }
+
+                Console.Clear();
+                Tela.ImprimirPartida(game);
+
             }
             catch (TabuleiroException e)
             {

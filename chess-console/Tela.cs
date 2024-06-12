@@ -12,11 +12,21 @@ namespace chess_console
             ImprimirPecasCapturadas(part);
             Console.WriteLine();
             Console.WriteLine("Turno: "+ part.Turno);
-            Console.WriteLine("Aguardando jogada: "+ part.JogadorAtual);
-            if (part.Xeque)
+
+            if (!part.Terminada)
             {
-                Console.WriteLine("Você está em xeque !");
+                Console.WriteLine("Aguardando jogada: "+ part.JogadorAtual);
+                if (part.Xeque)
+                {
+                    Console.WriteLine("Você está em xeque !");
+                }
             }
+            else
+            {
+                Console.WriteLine("XEQUE MATE");
+                Console.WriteLine("Vencedor: "+ part.JogadorAtual);
+            }
+
         }
 
         public static void ImprimirPecasCapturadas(PartidaDeXadrez part)
