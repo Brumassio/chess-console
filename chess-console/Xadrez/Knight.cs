@@ -26,7 +26,7 @@ namespace Xadrez
 
 
             //em cima
-            pos.DefinirValores(Posicao.Line -1 , Posicao.Column +2);
+            pos.DefinirValores(Posicao.Line -1 , Posicao.Column -2);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.Line, pos.Column] = true;
