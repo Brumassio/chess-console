@@ -112,15 +112,15 @@ namespace Xadrez
             }
 
             //#jogada especial roque grande
-            if(p is Pawn)
+            if (p is Pawn)
             {
-                if(origem.Column != destino.Column && pecaCapturada == VulneravelEnPassant)
+                if (origem.Column != destino.Column && pecaCapturada == VulneravelEnPassant)
                 {
                     Peca peao = Tab.RetirarPeca(destino);
                     Posicao posP;
-                    if(p.Cor == Cores.Branca)
+                    if (p.Cor == Cores.Branca)
                     {
-                        posP = new Posicao(3,destino.Column);
+                        posP = new Posicao(3, destino.Column);
                     }
                     else
                     {
@@ -137,6 +137,22 @@ namespace Xadrez
             {
                 desfazMovimento(posOrigem, posDestino, pecaCapturada);
                 throw new TabuleiroException("você não pode se colocar em xeque");
+            }
+
+            Peca p = Tab.GetPeca(posDestino);
+
+            //#jogadaespecial promocao
+
+            if (p is Pawn)
+            {
+                if ((p.Cor == Cores.Branca && posDestino.Line == 0) || (p.Cor == Cores.Preta && posDestino.Line == 7))
+                {
+                    p = Tab.RetirarPeca(posDestino);
+                    Pecas.Remove(p);
+                    Peca queen = new Queen(Tab, p.Cor);
+                    Tab.ColocarPeca(queen, posDestino);
+                    Pecas.Add(queen);
+                }
             }
 
             if (EstaEmXeque(Adversaria(JogadorAtual)))
@@ -157,7 +173,6 @@ namespace Xadrez
                 Turno++;
                 MudaJogador();
             }
-            Peca p = Tab.GetPeca(posDestino);
 
             if (p is Pawn && (posDestino.Line  == posOrigem.Line -2) || (posDestino.Line == posOrigem.Line +2))
             {
